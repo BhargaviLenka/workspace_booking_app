@@ -109,7 +109,7 @@ API Documentation
 
 Authentication
   
-	/api/token/ → Get access and refresh token
+	/api/login/ → Get access and refresh token
 	/api/token/refresh/ → Refresh the access token
   Pass the access token in headers:
   
@@ -117,23 +117,21 @@ Authentication
 
 User Management (Admin)
 
-	POST /api/user-create/ — Create user
-	POST /api/user-activate/ — Activate user
-	POST /api/user-deactivate/ — Deactivate user
+	POST /api/users/add/ — Create user
 
 Team Management (Admin)
 
-	POST /api/team-create/ — Create a team
-	POST /api/add-user-to-team/ — Add user to team
-	POST /api/remove-user-from-team/ — Remove user from team
+	POST /api/teams/add/ — Create a team
+	POST /api/add-user/ — Add user to team
+	POST /api/remove-user/ — Remove user from team
 
 Booking APIs
 
 	GET /api/bookings-available/?date=YYYY-MM-DD — View available slots
 	POST /api/book-room/ — Create a booking
-	POST /api/bookings/<booking_id>/cancel/ — Cancel a booking
-	GET /api/booking-history/ — Get your past bookings (paginated)
-	GET /api/all-bookings/ — Admin: Get all bookings
+	POST /api/cancel/<int:booking_id>/ — Cancel a booking
+	GET /api/bookings/history/ — Get your past bookings (paginated)
+	GET /api/bookings/all/ — Admin: Get all bookings
 
 Contributions
 
@@ -161,6 +159,7 @@ Notes
  - Teams can only book conference rooms (min 3 members)
 
 Contact
+
   Bhargavi Lenka
   
   lenkabhargavi2204@gmail.com
