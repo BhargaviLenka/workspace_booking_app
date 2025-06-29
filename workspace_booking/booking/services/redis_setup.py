@@ -27,8 +27,9 @@ def create_or_update_weekly_availability():
         try:
             parts = key.decode().split("/")
             key_date = datetime.strptime(parts[1], "%Y-%m-%d").date()
-            if key_date < today.date():
+            if key_date < today:
                 redis_client.delete(key)
+                print(f"Deleted past key: {key.decode()}")
         except Exception as e:
             print(f"Could not parse or delete key: {key.decode()} — {e}")
 
@@ -43,4 +44,7 @@ def create_or_update_weekly_availability():
                     redis_key = f"room_availability/{date_str}/{slot}/{room_type}/{room_name}"
                     if not redis_client.exists(redis_key):
                         redis_client.set(redis_key, count)
+                        print(f"Created key: {redis_key} -> {count}")
+                    else:
+                        print(f"Key exists: {redis_key}")
 

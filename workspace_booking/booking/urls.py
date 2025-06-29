@@ -2,7 +2,7 @@
 from django.urls import path
 
 from .api_views import AvailableSlotsView, CreateBookingView, CustomTokenView, CustomTokenRefreshView, LogoutView, \
-    UserCreateView, TeamCreateView, AddUserToTeamView, RemoveUserFromTeamView,\
+    UserCreateView, TeamCreateView, AddUserToTeamView, RemoveUserFromTeamView, DeactivateUserView, ActivateUserView, \
     BookingHistoryView, CancelBookingView, AllBookingsView
 
 urlpatterns = [
@@ -19,5 +19,7 @@ urlpatterns = [
     path('users/add/', UserCreateView.as_view(), name='add-user'),
     path('teams/add/', TeamCreateView.as_view(), name='add-team'),
     path('teams/add-user/', AddUserToTeamView.as_view(), name='add-user-to-team'),
-    path('teams/remove-user/', RemoveUserFromTeamView.as_view(), name='remove-user-from-team')
+    path('teams/remove-user/', RemoveUserFromTeamView.as_view(), name='remove-user-from-team'),
+    path('users/deactivate/', DeactivateUserView.as_view(), name='deactivate-user'),
+    path('users/activate/', ActivateUserView.as_view(), name='activate-user'),
 ]

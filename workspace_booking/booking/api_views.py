@@ -187,7 +187,6 @@ class UserCreateView(APIView):
             "username": str,
             "email": str,
             "password": str,
-            "dob": "YYYY-MM-DD"
             ...
         }
 
@@ -296,3 +295,46 @@ class RemoveUserFromTeamView(APIView):
         return Response({"detail": result["success"]}, status=status.HTTP_200_OK)
 
 
+class DeactivateUserView(APIView):
+    permission_classes = [IsAuthenticated, IsAdminUserCustom]
+
+    def post(self, request):
+        user_id = request.data.get('user_id')
+
+        if not user_id:
+            return Response({"detail": "user_id is required."}, status=status.HTTP_400_BAD_REQUEST)
+
+        result = UserManager.deactivate_user(user_id)
+
+        if "error" in result:
+            return Response({"detail": result["error"]}, status=status.HTTP_400_BAD_REQUEST)
+
+        return Response({"detail": result["success"]}, status=status.HTTP_200_OK)
+
+
+class ActivateUserView(APIView):
+    """
+    Admin only: Reactivate a deactivated user account.
+
+    Request body:
+        {
+            "user_id": int
+        }
+
+    Response:
+        - Success or error message.
+    """
+    permission_classes = [IsAuthenticated, IsAdminUserCustom]
+
+    def post(self, request):
+        user_id = request.data.get('user_id')
+
+        if not user_id:
+            return Response({"detail": "user_id is required."}, status=status.HTTP_400_BAD_REQUEST)
+
+        result = UserManager.activate_user(user_id)
+
+        if "error" in result:
+            return Response({"detail": result["error"]}, status=status.HTTP_400_BAD_REQUEST)
+
+        return Response({"detail": result["success"]}, status=status.HTTP_200_OK)
