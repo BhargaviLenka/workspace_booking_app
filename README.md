@@ -1,16 +1,16 @@
 Workspace Room Booking System
 
-  -This project is a Django-based room booking system that supports:
+   -This project is a Django-based room booking system that supports:
 
-  -Private, Shared, and Conference rooms
+   -Private, Shared, and Conference rooms
+ 
+   -Team and individual bookings
 
-  -Team and individual bookings
+   -Redis-backed slot availability
 
-  -Redis-backed slot availability
+   -Admin and user management APIs
 
-  -Admin and user management APIs
-
-  -JWT authentication
+   -JWT authentication
 
   -Dockerized setup with Redis
 
@@ -34,41 +34,37 @@ workspace_booking
 
 
 Technologies Used
-Django + Django REST Framework
-
-PostgreSQL (or SQLite for dev)
-
-Redis
-
-Docker & Docker Compose
-
-JWT Authentication
-
-Cron (via python-crontab)
+	Django + Django REST Framework
+	PostgreSQL (or SQLite for dev)
+	Redis
+	Docker & Docker Compose
+	JWT Authentication
+	Cron (via python-crontab)
 
 
 Features 
-  JWT-based authentication
 
-  Admin roles
-      - (View All Bookingd, Add User, Add/Update Team with team members)
+  - JWT-based authentication
   
-  User roles
+  - Admin roles
+      - (View All Bookingd, Add User, Add/Update Team with team members)
+	  
+  - User roles
       - (Check Availability, Room Booking, BookingHistory, Cancel Booking)
-
-  Weekly slot availability
-
-  Shared, Private, Conference room types
-
-  Redis caching for room availability
-
-  Dockerized setup
-
-  REST APIs with pagination & error handling
-
-  Child booking restrictions & team bookings
-
-  Cron setup to reset availability weekly
+	  
+  - Weekly slot availability
+  
+  - Shared, Private, Conference room types
+  
+  - Redis caching for room availability
+  
+  - Dockerized setup
+  
+  - REST APIs with pagination & error handling
+  
+  - Child booking restrictions & team bookings
+  
+  - Cron setup to reset availability weekly
 
 Setup Instructions
   Clone the Repository
@@ -145,7 +141,7 @@ Contributions
 
   - Used Redis to manage and cache availability per time slot
 	
-  -	Ensured concurrency safety with atomic booking logic
+  - Ensured concurrency safety with atomic booking logic
 	
   - Developed role-based user and team management features
 	
@@ -166,7 +162,10 @@ Notes
 
 Contact
   Bhargavi Lenka
+  
   lenkabhargavi2204@gmail.com
+  
   https://www.linkedin.com/in/lenka-bhargavi-profile/
+  
   https://github.com/BhargaviLenka/
 
