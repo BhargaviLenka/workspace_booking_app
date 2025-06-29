@@ -1,6 +1,6 @@
 Workspace Room Booking System
 
-   -This project is a Django-based room booking system that supports:
+ This project is a Django-based room booking system that supports:
 
    -Private, Shared, and Conference rooms
  
@@ -135,28 +135,26 @@ Booking APIs
 
 Contributions
 
-  - Designed and implemented full Django backend with REST APIs
+  - Designed and implemented the full Django REST backend with modular apps for bookings, users, and teams, including secure, paginated APIs for all core operations.
 
-  - Used Redis to manage and cache availability per time slot
-	
-  - Ensured concurrency safety with atomic booking logic
-	
-  - Developed role-based user and team management features
-	
-  - Built clean React frontend with protected routes and toast notifications
+  - Integrated Redis to manage room availability with atomic decrby/incrby operations, ensuring fast access and concurrency-safe booking.
 
+  - Automated environment setup using Docker and added DB + Redis seeding logic inside Django migrations for reproducible and scalable deployment.
+
+  - Implemented role-based access control, allowing admins to manage users and teams, while enforcing business logic like minimum team size and age restrictions.
+
+  - Ensured robust validation and error handling across all endpoints and implemented secure JWT-based authentication with proper token blacklisting for logout.
  
 Notes
 
- - Booking availability is cached in Redis for performance
-
- - Redis keys are initialized via migration and weekly job
-
- - Admins can manage users, teams, and monitor bookings
-
- - Prevents children under 10 from booking solo
-
- - Teams can only book conference rooms (min 3 members)
+ - Redis is used to cache real-time room availability per date-slot-room combination for quick lookup and reduced DB hits.
+ - Redis keys are initialized:
+     Automatically via a migration script
+     Refreshed weekly using a cron job inside Docker.job
+ - TimeSlot and Room data are seeded as part of migrations to ensure consistent local and production setup.
+ - Admins have access to full user, team, and booking management APIs.
+ - Teams can only book conference rooms and must have at least 3 members. Shared desks cannot be booked by teams. Children (age < 10) cannot book alone.
+ - Booking is allowed only for future slots.
 
 Contact
 
